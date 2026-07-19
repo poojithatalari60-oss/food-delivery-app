@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - YourOrders</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 400px; margin: 80px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #e63946; }
+        input[type=email], input[type=password] { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #e63946; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #c1121f; }
+        .error { color: red; text-align: center; }
+        .success { color: green; text-align: center; }
+        p { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <p id="msgBox"></p>
+        <form action="login" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const msgBox = document.getElementById("msgBox");
+        if (params.get("error") === "true") {
+            msgBox.className = "error";
+            msgBox.textContent = "Invalid email or password";
+        } else if (params.get("registered") === "true") {
+            msgBox.className = "success";
+            msgBox.textContent = "Registration successful! Please login.";
+        }
+    </script>
+</body>
+</html>
